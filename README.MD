@@ -3,10 +3,44 @@ Gradle Android AspectJ Plugin
 
 AspectJ plugin for Android.
 
-
 Supports [Retrolambda](https://github.com/evant/gradle-retrolambda)
 
-Will be in jcenter soon.
+
+
+HOW TO USE
+===================================
+        buildscript {
+            repositories {
+                jcenter()
+            }
+            dependencies {
+                classpath 'com.android.tools.build:gradle:1.+'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+            }
+        }
+        
+        apply plugin: 'com.android.application'
+        apply plugin: 'me.leolin.gradle-android-aspectj'
+
+
+or with [Retrolambda](https://github.com/evant/gradle-retrolambda):
+
+        buildscript {
+            repositories {
+                jcenter()
+            }
+            dependencies {
+                classpath 'com.android.tools.build:gradle:1.+'
+                classpath 'me.tatarka:gradle-retrolambda:2.5.0'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+            }
+        }
+        
+        apply plugin: 'com.android.application'
+        apply plugin: 'me.tatarka.retrolambda'
+        apply plugin: 'me.leolin.gradle-android-aspectj'
+
+
 
 
 LICENSE

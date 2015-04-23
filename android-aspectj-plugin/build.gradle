@@ -30,6 +30,8 @@ dependencies {
     ext {
         aspectjVersion = '1.8.5';
     }
+    compile gradleApi()
+    compile localGroovy()
     compile 'com.android.tools.build:gradle:1.1.2'
     compile "org.aspectj:aspectjtools:${aspectjVersion}"
     compile "org.aspectj:aspectjrt:${aspectjVersion}"
