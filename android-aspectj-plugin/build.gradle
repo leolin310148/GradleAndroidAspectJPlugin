@@ -1,0 +1,105 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'nexus'
+apply plugin: 'com.jfrog.bintray'
+
+def siteUrl = 'https://github.com/leolin310148/GradleAndroidAspectJPlugin'      // Homepage URL of the library
+def gitUrl = 'https://github.com/leolin310148/GradleAndroidAspectJPlugin.git'   // Git repository URL
+
+targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_7
+
+version = "1.0.1"
+group = "me.leolin"
+
+dependencies {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    ext {
+        aspectjVersion = '1.8.5';
+    }
+
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:1.1.2'
+    compile "org.aspectj:aspectjtools:${aspectjVersion}"
+    compile "org.aspectj:aspectjrt:${aspectjVersion}"
+}
+
+
+install {
+    repositories.mavenInstaller {
+        pom.artifactId = 'android-aspectJ-plugin'
+    }
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        pom.artifactId = 'android-aspectJ-plugin'
+    }
+}
+
+modifyPom {
+    project {
+        // Add your description here
+        name 'Gradle plugin for android with aspectJ'
+        url siteUrl
+
+        // Set your license
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+        developers {
+            developer {
+                id 'leolin310148'
+                name 'Leo Lin'
+                email 'leolin310148@gmail.com'
+            }
+        }
+        scm {
+            connection gitUrl
+            developerConnection gitUrl
+            url siteUrl
+
+        }
+    }
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+
+
+    pkg {
+        repo = 'maven'
+        name = 'gradle-android-aspectJ-plugin'
+        desc = 'Gradle plugin for android with aspectJ'
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['gradle', 'android', 'aspectJ']
+        publicDownloadNumbers = true
+        publish = true
+    }
+}

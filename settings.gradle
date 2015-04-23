@@ -1,4 +1,4 @@
 rootProject.name = 'GradleAndroidAspectJPlugin'
 
-include 'plugin'
+include 'android-aspectj-plugin'
 
