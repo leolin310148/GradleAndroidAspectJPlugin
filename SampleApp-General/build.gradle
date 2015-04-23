@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.+'
+        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
+        classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+    }
+}
+
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'me.leolin.gradle-android-aspectj'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "me.leolin.android.aop.general"
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+
+}
+
+dependencies{
+    compile 'com.android.support:appcompat-v7:21.+'
+}
