@@ -43,23 +43,17 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
 
                 def buildTypeName = variant.name.capitalize()
                 def hasRetrolambda = project.plugins.hasPlugin('me.tatarka.retrolambda')
-                if (hasRetrolambda) {
 
-                    def aopRetrolambdaTask = project.task("aopRetrolambda${buildTypeName}") {
-
-                        doLast {
-                            println "Doing Ajc compile for classpath:"
-                            iajcClasspath.split(':').each { c ->
-                                println(c)
-                            }
-
-                            ant.taskdef(
-                                    resource: "org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties",
-                                    classpath: project.configurations.ajc.asPath
-                            )
+                def aopTask = project.task("compile${buildTypeName}AspectJ") {
+                    doLast{
+                        ant.taskdef(
+                                resource: "org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties",
+                                classpath: project.configurations.ajc.asPath
+                        )
+                        if (hasRetrolambda) {
                             ant.iajc(
-                                    source: project.sourceCompatibility,
-                                    target: project.targetCompatibility,
+                                    source: project.android.compileOptions.sourceCompatibility,
+                                    target: project.android.compileOptions.targetCompatibility,
                                     maxmem: "2048m",
                                     fork: "true",
                                     destDir: variant.javaCompile.destinationDir,
@@ -68,33 +62,16 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
                                     inpath: "$variant.javaCompile.destinationDir",
                                     inpathDirCopyFilter: "java/**/*.class"
                             )
-
-                            println "Ajc compile Finish"
-                        }
-                    }
-
-                    project.tasks["compileRetrolambda$buildTypeName"].finalizedBy(aopRetrolambdaTask)
-                } else {
-                    def sourceRoots = [];
-                    variant.javaCompile.source.sourceCollections.each {
-                        it.asFileTrees.each {
-                            sourceRoots << it.dir
-                        }
-                    }
-                    def aopCompileJavaTask = project.task("aopCompile${buildTypeName}Java") {
-                        doLast {
-                            println "Doing Ajc compile for classpath:"
-                            iajcClasspath.split(':').each { c ->
-                                println(c)
+                        }else {
+                            def sourceRoots = [];
+                            variant.javaCompile.source.sourceCollections.each {
+                                it.asFileTrees.each {
+                                    sourceRoots << it.dir
+                                }
                             }
-
-                            ant.taskdef(
-                                    resource: "org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties",
-                                    classpath: project.configurations.ajc.asPath
-                            )
                             ant.iajc(
-                                    source: project.sourceCompatibility,
-                                    target: project.targetCompatibility,
+                                    source: project.android.compileOptions.sourceCompatibility,
+                                    target: project.android.compileOptions.targetCompatibility,
                                     maxmem: "2048m",
                                     fork: "true",
                                     destDir: variant.javaCompile.destinationDir,
@@ -104,12 +81,14 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
                                     sourceRootCopyFilter: "**/*.java",
                                     classpath: iajcClasspath
                             )
-
-                            println "Ajc compile Finish"
                         }
-                    }
 
-                    project.tasks["compile${buildTypeName}Java"].finalizedBy(aopCompileJavaTask)
+                    }
+                }
+                if (hasRetrolambda) {
+                    project.tasks["compileRetrolambda$buildTypeName"].finalizedBy(aopTask)
+                } else {
+                    project.tasks["compile${buildTypeName}Java"].finalizedBy(aopTask)
                 }
             }
         }
