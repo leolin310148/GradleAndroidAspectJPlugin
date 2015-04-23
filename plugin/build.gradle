@@ -1,0 +1,38 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+
+targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_7
+
+group = GROUP
+version = VERSION_NAME
+
+dependencies {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    ext {
+        aspectjVersion = '1.8.5';
+    }
+
+    compile gradleApi()
+    compile localGroovy()
+
+
+
+    compile 'com.android.tools.build:gradle:1.1.2'
+    compile "org.aspectj:aspectjtools:${aspectjVersion}"
+    compile "org.aspectj:aspectjrt:${aspectjVersion}"
+}
+
+
+
+install {
+    repositories.mavenInstaller {
+        pom.artifactId = "gradle-android-aspectJ-plugin"
+    }
+}
