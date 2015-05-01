@@ -4,4 +4,3 @@ include 'android-aspectj-plugin'
 
 include 'SampleApp-General'
 include 'SampleApp-Retrolambda'
-

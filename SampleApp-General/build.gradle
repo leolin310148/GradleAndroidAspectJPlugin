@@ -1,10 +1,10 @@
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.+'
-        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
         classpath 'me.leolin:android-aspectj-plugin:1.0.+'
     }
 }
@@ -13,6 +13,7 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.leolin.gradle-android-aspectj'
+
 
 android {
     compileSdkVersion 21
