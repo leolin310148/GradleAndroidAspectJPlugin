@@ -1,6 +1,9 @@
+
 rootProject.name = 'GradleAndroidAspectJPlugin'
 
 include 'android-aspectj-plugin'
 
 include 'SampleApp-General'
 include 'SampleApp-Retrolambda'
+include 'SampleJarLib'
+include 'SampleApp_WrapBySampleJarLib'

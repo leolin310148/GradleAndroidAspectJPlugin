@@ -1,0 +1,77 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.+'
+        classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+    }
+}
+
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'me.leolin.gradle-android-aspectj'
+
+repositories {
+    jcenter()
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+
+    defaultConfig {
+        applicationId "me.leolin.android.aspectj.wrapbysamplelib"
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:21.+'
+    compile project(":SampleJarLib")
+}
+
+project.afterEvaluate {
+    project.android.applicationVariants.all { variant ->
+
+        def buildTypeName = variant.name.capitalize()
+
+
+
+//        project.tasks["preDex${buildTypeName}"].properties.each{
+//            println "\t\t${it}"
+//        }
+//        println "dex"
+//        project.tasks["dex${buildTypeName}"].properties.each{
+//            println "\t\t${it}"
+//        }
+
+//        println "compileLibraries:"
+//        variant.compileLibraries.each{
+//            println "\t\t${it.name}"
+//        }
+//        println "apkLibraries:"
+//        println variant.class
+//        variant.apkLibraries.each{
+//            println "\t\t${it.name}"
+//        }
+    }
+}
