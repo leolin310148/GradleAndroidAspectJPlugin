@@ -14,8 +14,7 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
 
         project.configurations {
             aspectjTaskClasspath
-            aspects
-            aspectjClassPath
+            aspectsInPath
         }
 
         project.repositories {
@@ -26,7 +25,7 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
         project.dependencies {
             //AspectJ
             aspectjTaskClasspath "org.aspectj:aspectjtools:$aspectjVersion"
-            aspectjClassPath "org.aspectj:aspectjrt:$aspectjVersion"
+            compile "org.aspectj:aspectjrt:$aspectjVersion"
         }
 
         project.afterEvaluate {
@@ -50,8 +49,16 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
                     }
                 }
 
-
+                def aspectsInPaths = [];
+                def aspectsInPathsAbsolute = [];
                 def aopTask = project.task("compile${buildTypeName}AspectJ") {
+                    doFirst {
+                        project.configurations.aspectsInPath.each {
+                            aspectsInPaths.add(it);
+                            aspectsInPathsAbsolute.add(it.absolutePath);
+                        }
+                    }
+
                     doLast {
                         ant.taskdef(
                                 resource: "org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties",
@@ -62,13 +69,19 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
                                 target: project.android.compileOptions.targetCompatibility,
                                 fork: "true",
                                 destDir: variant.javaCompile.destinationDir,
-                                classpath: project.configurations.aspectjClassPath.asPath,
                                 bootClasspath: project.android.bootClasspath.join(File.pathSeparator),
                                 inpathDirCopyFilter: "java/**/*.class"
                         ) {
+                            classpath {
+                                variant.javaCompile.classpath.each {
+                                    if (!aspectsInPathsAbsolute.contains(it)) {
+                                        pathElement(location: it)
+                                    }
+                                }
+                            }
                             inpath {
                                 pathElement(location: copyDir)
-                                variant.javaCompile.classpath.each {
+                                aspectsInPaths.each {
                                     if (!it.name.startsWith("aspectjrt")) {
                                         pathElement(location: it)
                                     }
@@ -79,21 +92,20 @@ class GradleAndroidAspectJPlugin implements Plugin<Project> {
                 }
                 aopTask.dependsOn(copyClassTask);
 
-
-                def classPathNames = []
-                variant.javaCompile.classpath.each {
-                    if (!it.name.startsWith("aspectjrt")) {
-                        classPathNames.add(it.absolutePath)
+                def filterPreDexTask = project.task("filter${buildTypeName}PreDex") {
+                    doLast {
+                        def finalPreDexJars = []
+                        project.tasks["preDex${buildTypeName}"].inputFiles.each {
+                            if (it.name.startsWith("aspectjrt") ||
+                                    !aspectsInPathsAbsolute.contains(it.absolutePath)) {
+                                finalPreDexJars.add(it)
+                            }
+                        }
+                        project.tasks["preDex${buildTypeName}"].inputFiles = finalPreDexJars
                     }
                 }
+                project.tasks["preDex${buildTypeName}"].dependsOn(filterPreDexTask)
 
-                def finalPreDexJars = []
-                project.tasks["preDex${buildTypeName}"].inputFiles.each {
-                    if (!classPathNames.contains(it.absolutePath)) {
-                        finalPreDexJars.add(it)
-                    }
-                }
-                project.tasks["preDex${buildTypeName}"].inputFiles = finalPreDexJars
 
 
                 if (hasRetrolambda) {

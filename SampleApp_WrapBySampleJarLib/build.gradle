@@ -47,31 +47,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.+'
     compile project(":SampleJarLib")
+    aspectsInPath project(":SampleJarLib")
 }
 
-project.afterEvaluate {
-    project.android.applicationVariants.all { variant ->
-
-        def buildTypeName = variant.name.capitalize()
-
-
-
-//        project.tasks["preDex${buildTypeName}"].properties.each{
-//            println "\t\t${it}"
-//        }
-//        println "dex"
-//        project.tasks["dex${buildTypeName}"].properties.each{
-//            println "\t\t${it}"
-//        }
-
-//        println "compileLibraries:"
-//        variant.compileLibraries.each{
-//            println "\t\t${it.name}"
-//        }
-//        println "apkLibraries:"
-//        println variant.class
-//        variant.apkLibraries.each{
-//            println "\t\t${it.name}"
-//        }
-    }
-}

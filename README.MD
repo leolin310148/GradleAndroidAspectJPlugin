@@ -6,16 +6,43 @@ AspectJ plugin for Android.
 Supports [Retrolambda](https://github.com/evant/gradle-retrolambda)
 
 
-
-HOW TO USE
+SUPPORTS
 ===================================
+<table>
+<tr>
+    <th>Target files</th>
+    <th>Aspect files</th>
+    <th>Supporting</th>
+</tr>
+<tr>
+    <td align="center">Main Application</td>
+    <td align="center">Main Application</td>
+    <td align="center">Yes</td>
+</tr>
+<tr>
+    <td align="center">Main Application</td>
+    <td align="center">Jar</td>
+    <td align="center">Yes</td>
+</tr>
+<tr>
+    <td align="center">Jar</td>
+    <td align="center">Main Application</td>
+    <td align="center">Yes</td>
+</tr>
+</table>
+
+
+USAGE
+===================================
+General usage
+
         buildscript {
             repositories {
                 jcenter()
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.4'
             }
         }
         
@@ -23,7 +50,7 @@ HOW TO USE
         apply plugin: 'me.leolin.gradle-android-aspectj'
 
 
-or with [Retrolambda](https://github.com/evant/gradle-retrolambda):
+With [Retrolambda](https://github.com/evant/gradle-retrolambda):
 
         buildscript {
             repositories {
@@ -40,6 +67,19 @@ or with [Retrolambda](https://github.com/evant/gradle-retrolambda):
         apply plugin: 'me.tatarka.retrolambda'
         apply plugin: 'me.leolin.gradle-android-aspectj'
 
+
+Aspect classes in jar:
+        
+        dependencies {
+            compile project(":SampleJarLib")
+            aspectsInPath project(":SampleJarLib")
+        }
+        
+        
+
+DEVELOP BY
+===================================
+[Leo Lin](https://github.com/leolin310148)
 
 
 
