@@ -1,15 +1,9 @@
 buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.+'
-        classpath 'me.tatarka:gradle-retrolambda:2.5.0'
         classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+        classpath 'me.tatarka:gradle-retrolambda:3.0.+'
     }
 }
-
 
 
 apply plugin: 'com.android.application'
@@ -34,6 +28,6 @@ android {
     }
 }
 
-dependencies{
+dependencies {
     compile 'com.android.support:appcompat-v7:21.+'
 }

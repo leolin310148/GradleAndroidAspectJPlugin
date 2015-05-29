@@ -19,7 +19,7 @@ def gitUrl = 'https://github.com/leolin310148/GradleAndroidAspectJPlugin.git'   
 targetCompatibility = JavaVersion.VERSION_1_7
 sourceCompatibility = JavaVersion.VERSION_1_7
 
-version = "1.0.4"
+version = "1.0.5"
 group = "me.leolin"
 
 dependencies {

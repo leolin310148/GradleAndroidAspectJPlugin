@@ -15,18 +15,23 @@ SUPPORTS
     <th>Supporting</th>
 </tr>
 <tr>
-    <td align="center">Main Application</td>
-    <td align="center">Main Application</td>
+    <td align="center">Android Application</td>
+    <td align="center">Android Application</td>
     <td align="center">Yes</td>
 </tr>
 <tr>
-    <td align="center">Main Application</td>
+    <td align="center">Android Application</td>
     <td align="center">Jar</td>
     <td align="center">Yes</td>
 </tr>
 <tr>
     <td align="center">Jar</td>
-    <td align="center">Main Application</td>
+    <td align="center">Android Application</td>
+    <td align="center">Yes</td>
+</tr>
+<tr>
+    <td align="center">Android Library</td>
+    <td align="center">Android Library</td>
     <td align="center">Yes</td>
 </tr>
 </table>
@@ -42,7 +47,7 @@ General usage
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.4'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.5'
             }
         }
         
@@ -58,8 +63,8 @@ With [Retrolambda](https://github.com/evant/gradle-retrolambda):
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
-                classpath 'me.tatarka:gradle-retrolambda:2.5.0'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+                classpath 'me.tatarka:gradle-retrolambda:3.0.+'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.5'
             }
         }
         
