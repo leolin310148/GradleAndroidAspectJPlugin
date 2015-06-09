@@ -1,4 +1,4 @@
-include ':SampleAndroidLibrary'
+include ':SampleAndroidLibrary', ':SampleApp-MultiDex', ':SampleApp-AndroidAnnotation', ':SampleApp-RetrolambdaMuitiDexAndroidAnnotations'
 
 rootProject.name = 'GradleAndroidAspectJPlugin'
 

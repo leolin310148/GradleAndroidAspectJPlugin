@@ -3,36 +3,34 @@ Gradle Android AspectJ Plugin
 
 AspectJ plugin for Android.
 
-Supports [Retrolambda](https://github.com/evant/gradle-retrolambda)
-
-
 SUPPORTS
 ===================================
-<table>
-<tr>
-    <th>Target files</th>
-    <th>Aspect files</th>
-    <th>Supporting</th>
+<table style="border:0px">
+<tr style="border:0px">
+    <td style="border:0px" width="200px" align="center">
+        <a href="https://github.com/evant/gradle-retrolambda">Retrolambda</a>
+    </td>
+    <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
-<tr>
-    <td align="center">Android Application</td>
-    <td align="center">Android Application</td>
-    <td align="center">Yes</td>
+<tr style="border:0px">
+    <td style="border:0px" align="center">
+        <a href="http://androidannotations.org">AndroidAnnotation</a>
+    </td>
+    <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
-<tr>
-    <td align="center">Android Application</td>
-    <td align="center">Jar</td>
-    <td align="center">Yes</td>
+<tr style="border:0px">
+    <td style="border:0px" align="center">
+        <a href="https://developer.android.com/tools/building/multidex.html">multidex</a>
+    </td>
+    <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
-<tr>
-    <td align="center">Jar</td>
-    <td align="center">Android Application</td>
-    <td align="center">Yes</td>
+<tr style="border:0px">
+    <td style="border:0px" align="center">App with aspect in jar library</td>
+    <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
-<tr>
-    <td align="center">Android Library</td>
-    <td align="center">Android Library</td>
-    <td align="center">Yes</td>
+<tr style="border:0px">
+    <td style="border:0px" align="center">Android library</td>
+    <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
 </table>
 
@@ -80,12 +78,6 @@ Aspect classes in jar:
             aspectsInPath project(":SampleJarLib")
         }
         
-        
-        
-SCENARIO
-===================================
-        
-<img width="282" height="375" src="http://i.imgur.com/jWg3pHj.png"/>
         
 
 DEVELOP BY
