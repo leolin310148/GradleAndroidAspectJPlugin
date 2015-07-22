@@ -25,10 +25,6 @@ SUPPORTS
     <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
 <tr style="border:0px">
-    <td style="border:0px" align="center">App with aspect in jar library</td>
-    <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
-</tr>
-<tr style="border:0px">
     <td style="border:0px" align="center">Android library</td>
     <td style="border:0px" align="center"><img src="http://i.imgur.com/QF7sIdw.png?2" title="source: imgur.com" /></td>
 </tr>
@@ -45,7 +41,7 @@ General usage
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.5'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.6'
             }
         }
         
@@ -62,7 +58,7 @@ With [Retrolambda](https://github.com/evant/gradle-retrolambda):
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
                 classpath 'me.tatarka:gradle-retrolambda:3.0.+'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.5'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.6'
             }
         }
         
@@ -71,13 +67,6 @@ With [Retrolambda](https://github.com/evant/gradle-retrolambda):
         apply plugin: 'me.leolin.gradle-android-aspectj'
 
 
-Aspect classes in jar:
-        
-        dependencies {
-            compile project(":SampleJarLib")
-            aspectsInPath project(":SampleJarLib")
-        }
-        
         
 
 DEVELOP BY

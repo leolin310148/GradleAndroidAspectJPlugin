@@ -1,10 +1,7 @@
-include ':SampleAndroidLibrary', ':SampleApp-MultiDex', ':SampleApp-AndroidAnnotation', ':SampleApp-RetrolambdaMuitiDexAndroidAnnotations'
-
 rootProject.name = 'GradleAndroidAspectJPlugin'
-
 include 'android-aspectj-plugin'
-
-include 'SampleApp-General'
-include 'SampleApp-Retrolambda'
-include 'SampleJarLib'
-include 'SampleApp_WrapBySampleJarLib'
+include 'SampleApp_01_Normal'
+include ':SampleApp_02_AspectInAndroidLib_App', ':SampleApp_05_AndroidAnnotations'
+include ':SampleApp_02_AspectInAndroidLib_lib'
+include ':SampleApp_03_Retrolambda'
+include ':SampleApp_04_MultiDex'
