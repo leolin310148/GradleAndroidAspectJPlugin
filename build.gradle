@@ -5,9 +5,13 @@ task wrapper(type: Wrapper) {
 
 project.subprojects {
     if (it.name.startsWith('Sample')) {
+        ext{
+            aspectjPluginVersion='1.0.7'
+        }
+
         buildscript {
             repositories {
-                mavenLocal()
+//                mavenLocal()
                 jcenter()
             }
             dependencies {
@@ -15,7 +19,7 @@ project.subprojects {
             }
         }
         repositories {
-            mavenLocal()
+//            mavenLocal()
             jcenter()
         }
 

@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+        classpath "me.leolin:android-aspectj-plugin:${aspectjPluginVersion}"
     }
 }
 

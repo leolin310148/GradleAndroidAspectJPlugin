@@ -41,7 +41,7 @@ General usage
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.6'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.7'
             }
         }
         
@@ -58,7 +58,7 @@ With [Retrolambda](https://github.com/evant/gradle-retrolambda):
             dependencies {
                 classpath 'com.android.tools.build:gradle:1.+'
                 classpath 'me.tatarka:gradle-retrolambda:3.0.+'
-                classpath 'me.leolin:android-aspectj-plugin:1.0.6'
+                classpath 'me.leolin:android-aspectj-plugin:1.0.7'
             }
         }
         

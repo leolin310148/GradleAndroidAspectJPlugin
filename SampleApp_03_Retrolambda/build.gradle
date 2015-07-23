@@ -4,7 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'me.tatarka:gradle-retrolambda:3.0.+'
-        classpath 'me.leolin:android-aspectj-plugin:1.0.+'
+        classpath "me.leolin:android-aspectj-plugin:${aspectjPluginVersion}"
     }
 }
 apply plugin: 'com.android.application'
